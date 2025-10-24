@@ -1,0 +1,15 @@
+from flask import Flask
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    # Uses the ENV NAME from your Dockerfile
+    name = os.environ.get("NAME", "Wisecow")
+    return f"Moooo! Hello from {name}!"
+
+if __name__ == "__main__":
+    # Run on port 4499 (the default for this project)
+    # and make it accessible outside the container
+    app.run(host='0.0.0.0', port=4499)
